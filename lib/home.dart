@@ -7,6 +7,8 @@ import 'camera.dart';
 import 'bndbox.dart';
 import 'models.dart';
 
+bool isDetecting = false;
+
 class HomePage extends StatefulWidget {
   final List<CameraDescription> cameras;
 
@@ -79,10 +81,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[800],
         title: Text(
           "PlushieMate",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
         elevation: 0,
       ),
@@ -99,19 +101,34 @@ class _HomePageState extends State<HomePage> {
               ),
             )
           : Stack(
+              alignment: AlignmentDirectional.bottomCenter,
               children: [
                 Camera(
                   widget.cameras,
                   _model,
                   setRecognitions,
                 ),
-                BndBox(
-                    _recognitions == null ? [] : _recognitions,
-                    math.max(_imageHeight, _imageWidth),
-                    math.min(_imageHeight, _imageWidth),
-                    screen.height,
-                    screen.width,
-                    _model),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 30),
+                  child: Container(
+                    decoration: new BoxDecoration(
+                        color: Colors.grey[800],
+                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                    padding: EdgeInsets.only(top: 20),
+                    height: 100,
+                    width: 300,
+                    // color: Colors.grey[800],
+                    child: Center(
+                      child: BndBox(
+                          _recognitions == null ? [] : _recognitions,
+                          math.max(_imageHeight, _imageWidth),
+                          math.min(_imageHeight, _imageWidth),
+                          screen.height,
+                          screen.width,
+                          _model),
+                    ),
+                  ),
+                ),
               ],
             ),
     );
