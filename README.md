@@ -1,34 +1,9 @@
-For details: https://medium.com/@shaqian629/real-time-object-detection-in-flutter-b31c7ff9ef96
+# PlushieMate
 
-# flutter_realtime_detection
+This is the app in which the model https://github.com/Techno-Disaster/Plushie is used.
 
-Real-time object detection in Flutter using [camera](https://pub.dartlang.org/packages/camera) and [tflite](https://pub.dartlang.org/packages/tflite) plugin. 
+### Video:
 
-## Install 
 
-```
-flutter packages get
-```
-
-## Run
-
-```
-flutter run
-```
-
-## Models
-
-- Image Classification
-  - MobileNet
-
-- Object Detection
-  - SSD MobileNet
-  - Yolov2 Tiny
-
-- Pose Estimation 
-  - PoseNet
-
-## Previews
-
-![](preview.jpg) 
-
+Soon.
+till then here's a link to the video https://drive.google.com/file/d/1CKloiUdyz_83xJ_w6eM5dyWuget7EwAs/view?usp=sharing
