@@ -108,12 +108,39 @@ class _HomePageState extends State<HomePage> {
                   _model,
                   setRecognitions,
                 ),
+                Opacity(
+                  opacity: 0.5,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 150),
+                    child: Container(
+                      height: 50,
+                      width: 150,
+                      decoration: new BoxDecoration(
+                        color: Colors.grey[700],
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      ),
+                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Icon(Icons.search),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 8,10, 8),
+                            child: Text(
+                              "Dectecting",
+                              style: TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 30),
                   child: Container(
                     decoration: new BoxDecoration(
-                        color: Colors.grey[800],
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                      color: Colors.grey[800],
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
                     padding: EdgeInsets.only(top: 20),
                     height: 100,
                     width: 300,
