@@ -3,7 +3,6 @@
 This is the app in which the model https://github.com/Techno-Disaster/Plushie is used.
 
 ### Video:
+[Youtube](http://www.youtube.com/watch?v=k-6wmckZjls)
 
-
-Soon.
-till then here's a link to the video https://drive.google.com/file/d/1CKloiUdyz_83xJ_w6eM5dyWuget7EwAs/view?usp=sharing
+[![](http://img.youtube.com/vi/k-6wmckZjls/0.jpg)](http://www.youtube.com/watch?v=k-6wmckZjls "Plushiemate")
