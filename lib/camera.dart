@@ -43,7 +43,7 @@ class _CameraState extends State<Camera> {
           if (!isDetecting) {
             isDetecting = true;
 
-            int startTime = new DateTime.now().millisecondsSinceEpoch;
+            //int startTime = new DateTime.now().millisecondsSinceEpoch;
 
             if (widget.model == mobilenet) {
               Tflite.runModelOnFrame(
@@ -54,8 +54,8 @@ class _CameraState extends State<Camera> {
                 imageWidth: img.width,
                 numResults: 2,
               ).then((recognitions) {
-                int endTime = new DateTime.now().millisecondsSinceEpoch;
-                print("Detection took ${endTime - startTime}");
+               // int endTime = new DateTime.now().millisecondsSinceEpoch;
+               // print("Detection took ${endTime - startTime}");
 
                 widget.setRecognitions(recognitions, img.height, img.width);
 
@@ -67,8 +67,8 @@ class _CameraState extends State<Camera> {
                   return plane.bytes;
                 }).toList(),
               ).then((recognitions) {
-                int endTime = new DateTime.now().millisecondsSinceEpoch;
-                print("Detection took ${endTime - startTime}");
+                //int endTime = new DateTime.now().millisecondsSinceEpoch;
+               // print("Detection took ${endTime - startTime}");
 
                 widget.setRecognitions(recognitions, img.height, img.width);
 

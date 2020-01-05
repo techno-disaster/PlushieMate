@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
-import 'dart:math' as math;
+//import 'dart:math' as math;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'camera.dart';
-import 'bndbox.dart';
+//import 'bndbox.dart';
 import 'models.dart';
 
 import 'package:toast/toast.dart';
@@ -80,17 +80,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Size screen = MediaQuery.of(context).size;
+    // Size screen = MediaQuery.of(context).size;
     void settingModalBottomSheet(context) {
-      showModalBottomSheet(
-        backgroundColor: Colors.grey[800],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-        ),
-        enableDrag: true,
-        context: context,
-        builder: (BuildContext bc) {
-          return Container(
+      if (_recognitions[0]["index"] == 0)
+        showModalBottomSheet(
+          backgroundColor: Colors.grey[800],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+          ),
+          enableDrag: true,
+          context: context,
+          builder: (BuildContext bc) {
+            return Container(
               decoration: new BoxDecoration(
                 color: Colors.grey[800],
                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
@@ -100,17 +101,64 @@ class _HomePageState extends State<HomePage> {
               width: 300,
               // color: Colors.grey[800],
               child: Center(
-                child: Text(
-                  "This is a Android plushie. I am " + (_recognitions[0]["confidence"]*100).toStringAsFixed(2) + "% sure",
-                  style: TextStyle(color: Colors.tealAccent),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+                  child: Text(
+                    "This is a Android plushie. I am " +
+                        (_recognitions[0]["confidence"] * 100)
+                            .toStringAsFixed(2) +
+                        "% sure",
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.lightBlueAccent,
+                    ),
+                  ),
                 ),
-              ));
-        },
-      );
+              ),
+            );
+          },
+        );
+      else {
+        showModalBottomSheet(
+          backgroundColor: Colors.grey[800],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+          ),
+          enableDrag: true,
+          context: context,
+          builder: (BuildContext bc) {
+            return Container(
+              decoration: new BoxDecoration(
+                color: Colors.grey[800],
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+              ),
+              padding: EdgeInsets.only(top: 20),
+              height: 100,
+              width: 300,
+              // color: Colors.grey[800],
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+                  child: Text(
+                    "This is a not Android plushie. I am " +
+                        (_recognitions[0]["confidence"] * 100)
+                            .toStringAsFixed(2) +
+                        "% sure",
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      }
     }
 
     void showtoast() {
-      if (_recognitions[0]["confidence"] > 0.70)
+      if (_recognitions[0]["index"] == 0)
         Toast.show("Found Android plushie", context,
             textColor: Colors.tealAccent,
             backgroundColor: Colors.grey[800],
@@ -118,7 +166,7 @@ class _HomePageState extends State<HomePage> {
             gravity: Toast.TOP);
       else {
         Toast.show("Did not find a Android plushie", context,
-            textColor: Colors.tealAccent,
+            textColor: Colors.red,
             backgroundColor: Colors.grey[800],
             duration: Toast.LENGTH_SHORT,
             gravity: Toast.TOP);
@@ -151,23 +199,25 @@ class _HomePageState extends State<HomePage> {
           : Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
-                // Camera(
-                //   widget.cameras,
-                //   _model,
-                //   setRecognitions,
-                // ),
+                Camera(
+                  widget.cameras,
+                  _model,
+                  setRecognitions,
+                ),
                 Center(
                   child: Container(
                     height: 1000,
                     width: 500,
                     child: MaterialButton(
                       onPressed: () {
-                        print("pressed");
-                        print(math.max(_imageHeight, _imageWidth));
+                        print(_recognitions);
                         print(_recognitions[0]["confidence"]);
                         setState(() {
                           wantsdata = true;
+                          // _recognitions;
+                          // _recognitions[0]["confidence"];
                         });
+
                         showtoast();
                         settingModalBottomSheet(context);
                       },
@@ -180,7 +230,7 @@ class _HomePageState extends State<HomePage> {
                     width: 100,
                     color: Colors.transparent,
                     child: SpinKitDoubleBounce(
-                      color: Colors.grey,
+                      color: Colors.white,
                       size: 25.0,
                     ),
                   ),
@@ -214,26 +264,14 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                // if (wantsdata)
-                //   Container(
-                //     decoration: new BoxDecoration(
-                //       color: Colors.grey[800],
-                //       borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                //     ),
-                //     padding: EdgeInsets.only(top: 20),
-                //     height: 100,
-                //     width: 300,
-                //     // color: Colors.grey[800],
-                //     child: Center(
-                //       child: BndBox(
-                //           _recognitions == null ? [] : _recognitions,
-                //           math.max(_imageHeight, _imageWidth),
-                //           math.min(_imageHeight, _imageWidth),
-                //           screen.height,
-                //           screen.width,
-                //           _model),
-                //     ),
-                //   ),
+// uncomment if u wanna see live daata.
+                // BndBox(
+                //     _recognitions == null ? [] : _recognitions,
+                //     math.max(_imageHeight, _imageWidth),
+                //     math.min(_imageHeight, _imageWidth),
+                //     100,
+                //     200,
+                //     _model),
               ],
             ),
     );
