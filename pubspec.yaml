@@ -46,13 +46,13 @@ flutter:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
   assets:
-   - assets/yolov2_tiny.tflite
-   - assets/yolov2_tiny.txt
-   - assets/ssd_mobilenet.tflite
-   - assets/ssd_mobilenet.txt
-   - assets/mobilenet_v1_1.0_224.tflite
-   - assets/mobilenet_v1_1.0_224.txt
-   - assets/posenet_mv1_075_float_from_checkpoints.tflite
+  #  - assets/yolov2_tiny.tflite
+  #  - assets/yolov2_tiny.txt
+  #  - assets/ssd_mobilenet.tflite
+  #  - assets/ssd_mobilenet.txt
+  #  - assets/mobilenet_v1_1.0_224.tflite
+  #  - assets/mobilenet_v1_1.0_224.txt
+  #  - assets/posenet_mv1_075_float_from_checkpoints.tflite
    - assets/plushie.tflite
    - assets/retrained_labels.txt
 
