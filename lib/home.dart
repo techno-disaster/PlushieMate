@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
-          enableDrag: true,
+          
           context: context,
           builder: (BuildContext bc) {
             return Container(
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
-          enableDrag: true,
+          
           context: context,
           builder: (BuildContext bc) {
             return Container(
